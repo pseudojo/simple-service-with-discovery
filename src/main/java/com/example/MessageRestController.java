@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 //@RefreshScope
 @RestController
 public class MessageRestController {
-	@Value("${message:'Hello world, ${server.port}.'}")
+	@Value("${message:'Hello world, ${eureka.instance.metadata-map.uuid} (port: ${server.port}).'}")
 	private String message;
 	
-	@Value("${eureka.instance.metadataMap.instanceId}")
+	@Value("${eureka.instance.metadata-map.instanceId}")
 	private String instanceId;
 	
 	@RequestMapping("/")
