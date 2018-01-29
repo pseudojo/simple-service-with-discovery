@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: simple-service-with-discovery
+    
+server:
+  port: ${port:8989}
+
+eureka:
+  instance:
+    appname: simple-service-with-discovery-testapp
+    hostname: ${vcap.application.uris[0]:localhost}
+    non-secure-port: 80
+    non-secure-port-enabled: true
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    lease-expiration-duration-in-seconds: 5 
+    lease-renewal-interval-in-seconds: 10
+  client:
+    registry-fetch-interval-seconds: 5
+    
