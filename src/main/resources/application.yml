@@ -9,8 +9,8 @@ eureka:
   instance:
     appname: simple-service-with-discovery-testapp
     hostname: ${vcap.application.uris[0]:localhost}
-    non-secure-port: ${server.port}
-    non-secure-port-enabled: false
+    #non-secure-port: ${server.port}   # DO NOT USE NON-SECURE PORT WHEN IT USES EUREKA CLIENT
+    #non-secure-port-enabled: true     # DO NOT USE NON-SECURE PORT WHEN IT USES EUREKA CLIENT
     metadata-map:
       instanceId: ${vcap.application.instance_id:${spring.application.name}-${eureka.instance.metadata-map.uuid}}
       uuid: ${random.uuid}
@@ -19,6 +19,6 @@ eureka:
   client:
     registry-fetch-interval-seconds: 5
     serviceUrl:
-      defaultZone: http://localhost:${server.port}
+      defaultZone: http://localhost:${server.port:8761}/eureka/
     enabled: ${eureka.client.enabled:true}
     
