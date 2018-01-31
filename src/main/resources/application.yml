@@ -19,6 +19,6 @@ eureka:
   client:
     registry-fetch-interval-seconds: 5
     serviceUrl:
-      defaultZone: http://localhost:${server.port:8761}/eureka/
-    enabled: ${eureka.client.enabled:true}
+      defaultZone: http://localhost:${eureka.client.proxy-port:8761}/eureka/
+    enabled: ${example.eureka.client.enabled:true}
     
