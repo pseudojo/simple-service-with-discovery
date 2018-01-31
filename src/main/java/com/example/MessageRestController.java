@@ -14,14 +14,19 @@ public class MessageRestController {
 	
 	@Value("${eureka.instance.metadata-map.instanceId}")
 	private String instanceId;
-	
+
 	@RequestMapping("/")
-	protected String getMessage() {
-		return this.message;
+	protected String getMessage(@Value("(port: ${server.port})") String portMsg) {
+		return ("Hello world. " + portMsg);
 	}
 	
 	@RequestMapping("/id")
 	protected String getInstanceId() {
 		return this.instanceId;
+	}
+
+	@RequestMapping("/info")
+	protected String infoMessage() {
+		return this.message;
 	}
 }
